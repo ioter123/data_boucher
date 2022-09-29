@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>webPonentTest</title>
+        <link rel="stylesheet" type="text/css" href="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/css/webponent.grid.css">
+        <link rel="stylesheet" type="text/css" href="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/css/webponent.grid.flat.css">
+        <link rel="stylesheet" href="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/sample/layout/css/layout.css?ran=7732744">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/external/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/external/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/external/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/external/underscore-min.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/webponent.grid.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/webponent.grid.UIplugin.js" type="text/javascript"></script>
+        <script src="D:/jinwoo/하빅미/웹포넌트/webponent-grid-2.0.11/WEB-APP/webponent/grid2.0/external/webponent.pagingUI.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+<div class="wrapper">
+<fieldset class="search"><legend>스타일 변경</legend>
+    <form name="frm" id="frm">
+        <div class="input">
+            <input id="search-key" class="text" type="text" value="" style="width:100px;">
+        </div>
+        <div class="btn" style="right:500px;top:15px;"><input type="button" value="검색" onclick="search()"></div>
+        <div class="btn" style="right:425px;top:15px;"><input type="button" value="리셋" onclick="resetFiltering()"></div>
+    </form>
+</fieldset>
+</div>
+<div id="ci-grid">
+        
+</div>
+
+<div id="ci-grid-template" style="display:none;">
+    <table>
+        <thead>
+            <tr>
+                <th name="Column1" >Column1</th>
+                <th name="base_ym" >base_ym</th>
+                <th name="kywrd_nm">kywrd_nm</th>
+                <th name="rnk">rnk</th>
+                <th name="agegrd_5_unit_nm">agegrd_5_unit_nm</th>
+                <th name="sex_type_nm" >sex_type_nm</th>
+                <th name="dow_nm">dow_nm</th>
+                <th name="wday_eweek_div_nm">wday_eweek_div_nm</th>
+                <th name="timezn_cd">timezn_cd</th>
+                <th name="sido1" >sido1</th>
+                <th name="sgg1">sgg1</th>
+                <th name="main_sojn_site_nm">main_sojn_site_nm</th>
+                <th name="main_sojn_url">main_sojn_url</th>
+                <th name="prmr_ctgry_ctg_nm" >prmr_ctgry_ctg_nm</th>
+                <th name="daytm_sido_nm">daytm_sido_nm</th>
+                <th name="daytm_sgg_nm">daytm_sgg_nm</th>
+                <th name="night_sido_nm">night_sido_nm</th>
+                <th name="night_sgg_nm">night_sgg_nm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td name="Column1" bind="Column1"></td>
+                <td name="base_ym" bind="base_ym"></td>
+                <td name="kywrd_nm" bind="kywrd_nm"></td>
+                <td name="rnk" bind="rnk"></td>
+                <td name="agegrd_5_unit_nm" bind="agegrd_5_unit_nm"></td>
+                <td name="sex_type_nm" bind="sex_type_nm"></td>
+                <td name="dow_nm" bind="dow_nm"></td>
+                <td name="wday_eweek_div_nm" bind="wday_eweek_div_nm"></td>
+                <td name="timezn_cd" bind="timezn_cd"></td>
+                <td name="sido1" bind="sido1"></td>
+                <td name="sgg1" bind="sgg1"></td>
+                <td name="main_sojn_site_nm" bind="main_sojn_site_nm"></td>
+                <td name="main_sojn_url" bind="main_sojn_url"></td>
+                <td name="prmr_ctgry_ctg_nm" bind="prmr_ctgry_ctg_nm"></td>
+                <td name="daytm_sido_nm" bind="daytm_sido_nm"></td>
+                <td name="daytm_sgg_nm" bind="daytm_sgg_nm"></td>
+                <td name="night_sido_nm" bind="night_sido_nm"></td>
+                <td name="night_sgg_nm" bind="night_sgg_nm"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  
+
+<script>
+var table = $('#ci-grid');
+var template = $('#ci-grid-template');
+
+var grid = window.webponent.grid.init(table, template);
+var uiPlugin = webponent.grid.UIplugin.init(grid, {
+                 settingUI : true
+                 });
+$.ajax({
+    dataType : 'json',
+    url : 'D:/jinwoo/하빅미/웹포넌트/data.json',
+    success : function (resp) {
+        grid.appendRow(resp);
+    }
+});
+
+
+window.onload=function(){
+  grid.setGridHeight(1000);
+}
+function search () {
+    var key = $('#search-key').val();
+    grid.search(key);
+}
+
+function resetFiltering () {
+    grid.resetFiltering();
+}
+</script>
+    </body>
+</html>
